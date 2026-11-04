@@ -1,0 +1,67 @@
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 208px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .main-shell {
+    margin-left: 208px;
+    width: calc(100% - 208px);
+  }
+  .main-content {
+    padding: 25px;
+  }
+  .topbar {
+    padding: 0 25px;
+  }
+  .task-toolbar {
+    flex-wrap: wrap;
+  }
+  .task-filters {
+    gap: 0;
+  }
+  .task-filters button {
+    padding: 7px 9px;
+  }
+  .stat-card {
+    padding: 15px;
+  }
+  .assistant-layout {
+    grid-template-columns: minmax(0, 1fr) 205px;
+  }
+  .settings-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  .toast {
+    left: calc(50% + 104px);
+  }
+  .local-time {
+    display: none;
+  }
+  .privacy-card {
+    font-size: 10px;
+  }
+  .hint-card p {
+    font-size: 10px;
+  }
+  .task-toolbar .search-box {
+    width: 180px;
+  }
+  .brand b {
+    font-size: 17px;
+  }
+  .task-name {
+    max-width: 200px;
+  }
+  .section-toolbar {
+    flex-wrap: wrap;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    transition: none !important;
+    animation-duration: 2s !important;
+  }
+}

@@ -1,0 +1,498 @@
+[
+  {
+    "id": "desktop-runtime",
+    "scope": "developer",
+    "title": "桌面 Sidecar 与进程生命周期",
+    "tags": [
+      "Tauri",
+      "Rust",
+      "Python",
+      "Sidecar",
+      "退出",
+      "冻结",
+      "Windows"
+    ],
+    "content": "可借鉴 SKY Workbench：Rust 启动自己持有的 Python Sidecar，传入独立应用数据目录、回环地址、会话令牌和父 PID；Python 监测父进程。退出先请求 shutdown，再限时回收自己创建的进程树。新产品需要新 identifier、目录和令牌头。源码中有固定等待后强制回收的实现，新项目应按抓取器、浏览器和事务设计可观测的分阶段关闭，不直接继承 COMSOL 逻辑。",
+    "sources": [
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "frontend/src-tauri/src/main.rs",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/frontend/src-tauri/src/main.rs",
+        "blob_sha": "c84a402de25d124adb0d8812d1850ea1b8d4b0a0"
+      },
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "backend/desktop_runtime.py",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/backend/desktop_runtime.py",
+        "blob_sha": "145e9cf557ea4661fa46a3f1fd3a8b2cc6233bb9"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "ui-reference",
+    "scope": "developer",
+    "title": "职忆界面可借鉴的具体元素",
+    "tags": [
+      "界面",
+      "蓝白",
+      "React",
+      "搜索",
+      "任务清单",
+      "粒子"
+    ],
+    "content": "职忆当前源码是 HTML/CSS/JavaScript，不能视为可直接导入的 React 组件库。可迁移浅色背景 #f3f6fb、蓝色 #2563eb、侧栏、顶部搜索和卡片层级。原代码有登录与 landing 流程，而目标应用启动后直接进入任务清单。动效应降低占用，表格和真实任务反馈优先。上述是静态源码观察，本轮未运行视觉验收。",
+    "sources": [
+      {
+        "repo": "lovesky514514-cmd/sky-zhiyi-career-workspace",
+        "path": "css/style.css",
+        "url": "https://github.com/lovesky514514-cmd/sky-zhiyi-career-workspace/blob/53ecd0e4085494ce70b75e0d1a9b5d9b8c3c5f2a/css/style.css",
+        "blob_sha": "f5250689fdd6cf3db13304d034a63e5edadbcf48"
+      },
+      {
+        "repo": "lovesky514514-cmd/sky-zhiyi-career-workspace",
+        "path": "index.html",
+        "url": "https://github.com/lovesky514514-cmd/sky-zhiyi-career-workspace/blob/53ecd0e4085494ce70b75e0d1a9b5d9b8c3c5f2a/index.html",
+        "blob_sha": "ce31dd26486e8ce3e5ee3a0a42ac2a20f3a201b0"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "fetch-routing",
+    "scope": "runtime",
+    "title": "静态网页和动态网页如何选择采集工具",
+    "tags": [
+      "HTTPX",
+      "Playwright",
+      "静态",
+      "动态",
+      "网页",
+      "超时"
+    ],
+    "content": "普通静态 HTML 和 JSON/XML 优先使用 HTTPX；仅当页面依赖 JavaScript 才使用 Playwright。HTTP 请求需要连接、读取、写入、连接池超时以及字节上限。正文抽取可用 Trafilatura，字段提取保留原始 HTML 表格、表头、单元格与定位信息。正文 Markdown 不足以替代数值证据。",
+    "sources": [
+      {
+        "repo": "encode/httpx",
+        "path": "README.md",
+        "url": "https://github.com/encode/httpx/blob/master/README.md",
+        "blob_sha": "2ccecd578c3dfdd4fa1f7fc493309cfc944f7cb3"
+      },
+      {
+        "repo": "encode/httpx",
+        "path": "docs/advanced/timeouts.md",
+        "url": "https://github.com/encode/httpx/blob/master/docs/advanced/timeouts.md",
+        "blob_sha": "aedcfb627f5139901638ebf8de30216c2640591e"
+      },
+      {
+        "repo": "microsoft/playwright-python",
+        "path": "README.md",
+        "url": "https://github.com/microsoft/playwright-python/blob/main/README.md",
+        "blob_sha": "229cde671de06247f1250f73c0753b2ec93c3678"
+      },
+      {
+        "repo": "adbar/trafilatura",
+        "path": "README.md",
+        "url": "https://github.com/adbar/trafilatura/blob/master/README.md",
+        "blob_sha": "45803b2c3152052216cda053cc029ba374186192"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "search-provider",
+    "scope": "runtime",
+    "title": "全网搜索能力与指定来源发现",
+    "tags": [
+      "搜索",
+      "SearXNG",
+      "SearchProvider",
+      "Sitemap",
+      "URL",
+      "API"
+    ],
+    "content": "搜索模块返回候选来源，不直接启动批量抓取。没有可用的正式搜索 API 或自管搜索实例时，明确显示全网搜索不可用；指定 URL、域名、Sitemap、URL 列表继续可用。SearXNG 是聚合搜索服务；公共实例可能关闭 JSON 格式或受到限流，需验证实际实例能力。用户审核来源后才能进入采集队列。",
+    "sources": [
+      {
+        "repo": "searxng/searxng",
+        "path": "README.rst",
+        "url": "https://github.com/searxng/searxng/blob/master/README.rst",
+        "blob_sha": "9c2319105ed83fa26397e523b7425447f2302717"
+      },
+      {
+        "url": "https://docs.searxng.org/dev/search_api.html",
+        "path": "searxng-search.md",
+        "repo": "official-docs"
+      }
+    ],
+    "basis": "项目目标与官方文档综合建议",
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "queue-resume",
+    "scope": "developer",
+    "title": "任务暂停、取消和断点续采",
+    "tags": [
+      "任务",
+      "暂停",
+      "恢复",
+      "取消",
+      "Scrapy",
+      "SQLite",
+      "断点"
+    ],
+    "content": "Scrapy 的 JOBDIR 说明持久化请求队列、去重集合和状态的设计价值，但恢复依赖干净停止；不能据此宣称任意强退都可恢复。本项目建议用 SQLite 保存 task/run/request/attempt/checkpoint；暂停停止新调度并让当前原子步骤收尾；取消通知 worker、清理拥有的 browser/context、下载临时文件和事务。每次尝试有独立身份，旧事件不得覆盖新运行。",
+    "sources": [
+      {
+        "repo": "scrapy/scrapy",
+        "path": "docs/topics/jobs.rst",
+        "url": "https://github.com/scrapy/scrapy/blob/master/docs/topics/jobs.rst",
+        "blob_sha": "a62e9b8794ae28c42905c61cfa762430c34c0483"
+      },
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "backend/app/agent/tool_registry.py",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/backend/app/agent/tool_registry.py",
+        "blob_sha": "4598faab99a45ce2fcafc828677fe7a9748be4f6"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "pdf-ocr",
+    "scope": "runtime",
+    "title": "PDF 文本表格与扫描件 OCR 的分流",
+    "tags": [
+      "PDF",
+      "OCR",
+      "扫描",
+      "pdfplumber",
+      "Docling",
+      "PaddleOCR",
+      "坐标",
+      "证据"
+    ],
+    "content": "文本型 PDF 优先用 pdfplumber 获取文字、表格及坐标；扫描页需专用 OCR，如 PaddleOCR。Docling 可作为复杂版面解析候选，重量、模型文件和 Windows 打包要单独验证。OCR 数字仍可能错，应保存页码、边界框、原图和识别结果；Qwen 只帮助理解表头与字段，不可用生成数字覆盖 OCR 原值。",
+    "sources": [
+      {
+        "repo": "jsvine/pdfplumber",
+        "path": "README.md",
+        "url": "https://github.com/jsvine/pdfplumber/blob/stable/README.md",
+        "blob_sha": "f6f1ce3e0e546b854787aff946601af44fcc6f69"
+      },
+      {
+        "repo": "docling-project/docling",
+        "path": "README.md",
+        "url": "https://github.com/docling-project/docling/blob/main/README.md",
+        "blob_sha": "3297b7881575dc853facc5add4cc4c8dccc12f14"
+      },
+      {
+        "repo": "PaddlePaddle/PaddleOCR",
+        "path": "README.md",
+        "url": "https://github.com/PaddlePaddle/PaddleOCR/blob/main/README.md",
+        "blob_sha": "d3a9c16b6b5672a872d6ad7473ff52aceb7712bb"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "field-validation",
+    "scope": "runtime",
+    "title": "JSON 合法不等于数值有依据",
+    "tags": [
+      "JSON Schema",
+      "Pydantic",
+      "Pandera",
+      "校验",
+      "幻觉",
+      "金额",
+      "证据",
+      "Decimal"
+    ],
+    "content": "模型只提供字段映射、候选值与解释。先按 JSON Schema/Pydantic 检查结构，再核对候选值是否能定位到原始文字或单元格；之后处理类型、单位、币种、期间与口径。金额使用 Decimal 字符串或精确十进制存储，不经二进制浮点中转。找不到证据时 value=null，状态为缺失或待审核。Pandera 适用于表级质量检查，不能证明来源事实正确。",
+    "sources": [
+      {
+        "repo": "pydantic/pydantic",
+        "path": "README.md",
+        "url": "https://github.com/pydantic/pydantic/blob/main/README.md",
+        "blob_sha": "8dabe5a845d2820f1ee84e3a9ed9d7716a8a6208"
+      },
+      {
+        "repo": "python-jsonschema/jsonschema",
+        "path": "README.rst",
+        "url": "https://github.com/python-jsonschema/jsonschema/blob/main/README.rst",
+        "blob_sha": "29381f41eef8062e5b6d94fde3ce0b6f4fd31d4b"
+      },
+      {
+        "repo": "unionai-oss/pandera",
+        "path": "README.md",
+        "url": "https://github.com/unionai-oss/pandera/blob/main/README.md",
+        "blob_sha": "b8cec427e4584229302d8b5444b5d60dc2323a54"
+      },
+      {
+        "url": "https://docs.ollama.com/capabilities/structured-outputs",
+        "path": "ollama-schema.md",
+        "repo": "official-docs"
+      }
+    ],
+    "basis": "项目防幻觉要求与库能力综合建议",
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "financial-mapping",
+    "scope": "runtime",
+    "title": "财务字段映射和单位口径",
+    "tags": [
+      "财务",
+      "营业收入",
+      "营业总收入",
+      "净利润",
+      "合并",
+      "母公司",
+      "单位",
+      "重述"
+    ],
+    "content": "营业收入与营业总收入可以列为字段映射候选，但不可无条件合并为同一财务概念。净利润与归属于母公司股东的净利润需区别。记录报告年、报告期、本期/上期、合并/母公司、币种、元/千元/万元/亿元与更正重述状态。标题或表头不足以确定口径时保持待审核。此卡是项目规则建议，尚未由真实财报标注集验证，不提供任何公司的事实金额。",
+    "sources": [],
+    "basis": "用户提供的需求目标，经研究整理；业务规则未验收",
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "xlsx-export",
+    "scope": "developer",
+    "title": "大数据 XLSX 导出与内存",
+    "tags": [
+      "导出",
+      "XLSX",
+      "Excel",
+      "XlsxWriter",
+      "CSV",
+      "内存",
+      "公式注入"
+    ],
+    "content": "XlsxWriter 的 constant_memory 按行释放内存，必须按行顺序写出；add_table 在该模式不可用，合并等操作也有限制。选择流式逐行导出、冻结表头、筛选和明确的样式范围，生成数据/来源/质量三个工作表。来自网页的文本显式写成字符串，CSV 应使用明确的公式注入处理规则；金额精度超过 Excel 数值能力时保留原始十进制文本并说明类型。",
+    "sources": [
+      {
+        "repo": "jmcnamara/XlsxWriter",
+        "path": "README.rst",
+        "url": "https://github.com/jmcnamara/XlsxWriter/blob/main/README.rst",
+        "blob_sha": "70568af1654a7d9c36721751fc523f18ea4758b1"
+      },
+      {
+        "repo": "jmcnamara/XlsxWriter",
+        "path": "dev/docs/source/working_with_memory.rst",
+        "url": "https://github.com/jmcnamara/XlsxWriter/blob/main/dev/docs/source/working_with_memory.rst",
+        "blob_sha": "2bf1d054b96790a842b05462875d8c556fc62ab6"
+      }
+    ],
+    "basis": "官方内存限制与项目导出要求综合建议",
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "rag-provenance",
+    "scope": "developer",
+    "title": "知识库元数据、混合检索与真实降级",
+    "tags": [
+      "知识库",
+      "RAG",
+      "BM25",
+      "FTS5",
+      "RRF",
+      "检索",
+      "来源",
+      "SHA256",
+      "中文"
+    ],
+    "content": "Workbench 已有 SQLite 编译知识库、词法检索、候选融合、可选向量检索/重排和引用结构。可借鉴文档/片段哈希、版本、来源、许可分类、project_id 和检索 trace。完整私有知识库未随源码公开。它的科学领域过滤与英文 alias 需改为采集领域；本项目首版用中英文词法检索和人工术语表即可，不额外下载 embedding/reranker，不把哈希特征宣称为神经语义模型。",
+    "sources": [
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "backend/app/knowledge/hybrid_rag.py",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/backend/app/knowledge/hybrid_rag.py",
+        "blob_sha": "b3cf745f26b52246c4246011e8ea7a78a3d8241b"
+      },
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "backend/app/knowledge/contracts.py",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/backend/app/knowledge/contracts.py",
+        "blob_sha": "2d1060adf8ae5fc577b6d6daa7e39d2bef04804b"
+      },
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "backend/app/knowledge/embedding_providers.py",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/backend/app/knowledge/embedding_providers.py",
+        "blob_sha": "103956dd194ddac0303f17d2535ac22b5243cfce"
+      },
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "README.md",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/README.md",
+        "blob_sha": "f90cf6327fd133debfe761b8ddcea476cad62900"
+      },
+      {
+        "url": "https://docs.ollama.com/capabilities/embeddings",
+        "path": "ollama-embed.md",
+        "repo": "official-docs"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "qwen-tools",
+    "scope": "runtime",
+    "title": "Qwen 工具调用由宿主程序执行",
+    "tags": [
+      "Qwen",
+      "qwen3.5:9b",
+      "Ollama",
+      "工具调用",
+      "function calling",
+      "Schema"
+    ],
+    "content": "固定生成模型 qwen3.5:9b。Ollama /api/chat 接收 tools，模型提出 tool_calls，宿主按白名单、参数 Schema、task_id 和已审核 source_id 检查后执行，结果作为 tool 消息回传。先做 lookup_knowledge 与字段映射建议；网络和文件操作由确定性工作流掌控。Qwen-Agent 可学习 BaseTool/register_tool 与多步消息回传机制，但不必作为首版依赖。官方能力声明不是本机可靠性实测。",
+    "sources": [
+      {
+        "url": "https://ollama.com/library/qwen3.5",
+        "path": "ollama-qwen35.md",
+        "repo": "official-docs"
+      },
+      {
+        "url": "https://docs.ollama.com/capabilities/tool-calling",
+        "path": "ollama-tools.md",
+        "repo": "official-docs"
+      },
+      {
+        "repo": "QwenLM/Qwen-Agent",
+        "path": "README.md",
+        "url": "https://github.com/QwenLM/Qwen-Agent/blob/main/README.md",
+        "blob_sha": "7d41fe4e7c78fa62d59b03ce4bd444fcdb75eb58"
+      },
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "backend/app/agent/tool_registry.py",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/backend/app/agent/tool_registry.py",
+        "blob_sha": "4598faab99a45ce2fcafc828677fe7a9748be4f6"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "untrusted-content",
+    "scope": "runtime",
+    "title": "网页、知识库与工具参数的信任边界",
+    "tags": [
+      "提示注入",
+      "安全",
+      "SSRF",
+      "内网",
+      "重定向",
+      "DNS",
+      "工具",
+      "HTML"
+    ],
+    "content": "网页正文、仓库 README、检索结果和工具返回都作为不可信资料，不能提升为系统指令。请求前、重定向时及浏览器子资源均需执行网络策略，验证解析地址并防止 DNS 重绑定；默认禁止回环、私网、云元数据等目标。工具只接收已登记来源 ID，模型没有任意 shell、Python 执行、系统路径或数据库写入能力。权限由宿主执行，不依赖提示词或关键词过滤。",
+    "sources": [
+      {
+        "repo": "OWASP/CheatSheetSeries",
+        "path": "cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.md",
+        "url": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.md",
+        "blob_sha": "b97bb26cf6394d7a9366fa31acf1939bdb304abd"
+      },
+      {
+        "repo": "OWASP/CheatSheetSeries",
+        "path": "cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.md",
+        "url": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.md",
+        "blob_sha": "4d597fe369f9cf55da4ce910984f09123f9e4ba5"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "packaging",
+    "scope": "developer",
+    "title": "Windows 打包需要验证的运行资源",
+    "tags": [
+      "Windows",
+      "PyInstaller",
+      "NSIS",
+      "打包",
+      "浏览器",
+      "安装",
+      "EXE"
+    ],
+    "content": "可参考 Workbench 的 spec、原生输入哈希、自检与独立目录启动方式；新项目无需科学求解器和 Java Bridge。Playwright Python 包和浏览器二进制是两项输入，需只收集用到的 Chromium 及其依赖。OCR 推理依赖、模型资源、冻结路径、中文目录、升级数据库、退出无残留必须实测。本轮仅研究文档和代码，没有构建或验收 SKY Data Workspace 安装包。",
+    "sources": [
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "BUILDING.md",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/BUILDING.md",
+        "blob_sha": "cabba351e21b08cd00c4e7f3f2c15514da8ced63"
+      },
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "packaging/scientific-runtime.spec",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/packaging/scientific-runtime.spec",
+        "blob_sha": "5f26a553e440abc52707e0306679cf1cd22aeac6"
+      },
+      {
+        "url": "https://playwright.dev/python/docs/library#pyinstaller",
+        "path": "playwright-package.md",
+        "repo": "official-docs"
+      }
+    ],
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  },
+  {
+    "id": "knowledge-separation",
+    "scope": "runtime",
+    "title": "开发参考、业务规则和采集证据分别存储",
+    "tags": [
+      "知识库",
+      "业务",
+      "开发",
+      "证据",
+      "学习",
+      "Qwen",
+      "RAG"
+    ],
+    "content": "GitHub 技术文档主要供开发查阅，运行时 Qwen 更需要采集规则、字段定义、单位表、错误处理手册和经审核的成功案例。按 developer/runtime 分区检索；任务事实证据另外按 task_id/source_id/document_hash 保存并硬过滤。未经审核的网页不得自动进入可信业务规则库。知识库是外部存储和按需上下文，不改变 Qwen 权重，也不会让模型永久记住整个仓库。",
+    "sources": [
+      {
+        "repo": "lovesky514514-cmd/sky-workbench",
+        "path": "backend/app/knowledge/contracts.py",
+        "url": "https://github.com/lovesky514514-cmd/sky-workbench/blob/2bdea317847b0edda4ec4bf6b5b13b28e65fade5/backend/app/knowledge/contracts.py",
+        "blob_sha": "2d1060adf8ae5fc577b6d6daa7e39d2bef04804b"
+      }
+    ],
+    "basis": "针对本项目的设计建议",
+    "kind": "research_card",
+    "review_status": "research_only",
+    "fetched_on": "2026-11-02"
+  }
+]

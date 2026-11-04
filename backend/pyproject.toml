@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sky-data-workspace"
+version = "1.0.0"
+description = "SKY 数据采集工作台：本地 Qwen 与证据校验后端"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = ["httpx>=0.28.1,<0.29", "pydantic>=2.12,<3", "jsonschema>=4.25,<5", "XlsxWriter>=3.2,<4", "defusedxml>=0.7,<1"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+sky-data = "sky_data_workspace.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sky_data_workspace*"]

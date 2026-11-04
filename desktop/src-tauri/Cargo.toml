@@ -1,0 +1,17 @@
+[package]
+name = "sky-data-workspace"
+version = "1.0.0"
+description = "SKY 数据采集工作台"
+edition = "2021"
+license = "MIT"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json"] }
+uuid = { version = "1", features = ["v4"] }
+tauri-plugin-single-instance = "2"

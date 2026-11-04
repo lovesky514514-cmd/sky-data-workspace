@@ -1,0 +1,341 @@
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+.sidebar {
+  width: 236px;
+  position: fixed;
+  inset: 0 auto 0 0;
+  background: #fff;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 18px 18px;
+  z-index: 20;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 7px 32px;
+}
+.brand-avatar {
+  width: 43px;
+  height: 43px;
+  border: 1px solid #e8edf6;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 3px 9px #d2dbe926;
+}
+.brand img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.brand b {
+  font-size: 19px;
+  letter-spacing: 0.025em;
+  display: block;
+  line-height: 1.2;
+}
+.brand b span {
+  font-size: 10px;
+  letter-spacing: 0.025em;
+  display: block;
+  color: #8c98ad;
+  font-weight: 600;
+  margin-top: 3px;
+}
+.brand small {
+  font-size: 13px;
+  color: #6c7b91;
+  display: block;
+  margin-top: 5px;
+}
+.workspace-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #a2adbd;
+  letter-spacing: 0.14em;
+  padding: 0 16px;
+  margin: 8px 0 14px;
+}
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.sidebar nav button {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 0 16px;
+  text-align: left;
+  border-radius: 10px;
+  color: #7b889d;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.sidebar nav button:hover {
+  background: #f6f8fc;
+}
+.sidebar nav button.active {
+  background: #edf3ff;
+  color: #366de0;
+  font-weight: 650;
+}
+.sidebar nav small {
+  margin-left: auto;
+  font-size: 12px;
+  border-radius: 5px;
+  background: #dce8ff;
+  padding: 2px 6px;
+}
+.nav-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #87b1f9;
+  margin-left: auto;
+}
+.sidebar-note {
+  margin: 38px 7px 0;
+  padding: 18px 14px 15px;
+  background: linear-gradient(140deg, #f5f8ff, #f6f9fb);
+  border: 1px solid #e9eff8;
+  border-radius: 12px;
+}
+.note-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: #e6eefc;
+  display: grid;
+  place-items: center;
+  color: #6a91d6;
+  margin-bottom: 12px;
+}
+.sidebar-note b {
+  font-size: 13px;
+  font-weight: 600;
+}
+.sidebar-note p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #8b98ac;
+  margin-top: 7px;
+}
+.sidebar-note > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #8292a9;
+  border-top: 1px solid #e6edf7;
+  padding-top: 12px;
+  margin-top: 13px;
+}
+.sidebar-note i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #75b5a4;
+}
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 20px 8px 0;
+}
+.sidebar-bottom > button {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 13px;
+  color: #95a0b2;
+  padding: 8px;
+}
+.sidebar-bottom > button:hover {
+  color: #376fe8;
+}
+.version {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eff2f7;
+  margin-top: 12px;
+  padding-top: 15px;
+  font-size: 10px;
+  color: #a8b2c1;
+}
+.version small {
+  font-size: 10px;
+}
+.main-shell {
+  margin-left: 236px;
+  width: calc(100% - 236px);
+  min-width: 0;
+}
+.topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 34px;
+  background: #ffffffb8;
+  border-bottom: 1px solid var(--border);
+}
+.breadcrumb {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  color: #9aa5b7;
+  font-size: 13px;
+}
+.breadcrumb strong {
+  color: #5b6d87;
+  font-weight: 500;
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  font-size: 12px;
+  color: #98a4b6;
+}
+.engine-state {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.engine-state i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #b4bfd1;
+}
+.engine-state.connected i {
+  background: #6db39b;
+}
+.header-divider {
+  height: 12px;
+  width: 1px;
+  background: #e5eaf2;
+}
+.local-time {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.main-content {
+  padding: 29px 34px 32px;
+  max-width: 1700px;
+  margin: auto;
+}
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 26px;
+}
+.eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  color: #99a8bd;
+}
+.page-heading h1 {
+  font-size: 27px;
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+  font-weight: 680;
+  margin-top: 5px;
+}
+.page-heading p {
+  font-size: 13px;
+  color: #8c99ad;
+  margin-top: 6px;
+}
+.button {
+  display: inline-flex;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 13px;
+  border: 1px solid #e3e9f3;
+  background: #fff;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 550;
+  transition:
+    background 0.15s,
+    box-shadow 0.15s;
+  min-height: 34px;
+}
+.button:hover:not(:disabled) {
+  background: #f7f9fd;
+  border-color: #cfdcf2;
+}
+.button.primary {
+  background: #3974e9;
+  color: #fff;
+  border-color: #3974e9;
+  box-shadow: 0 3px 7px #3974e915;
+}
+.button.primary:hover:not(:disabled) {
+  background: #2865da;
+}
+.button.large {
+  padding: 12px 18px;
+  font-size: 13px;
+  min-height: 39px;
+}
+.button.ghost {
+  background: none;
+  border-color: transparent;
+  color: #8291a8;
+}
+.button.danger {
+  background: #e35c65;
+  border-color: #e35c65;
+  color: #fff;
+}
+.button-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.icon-button {
+  width: 27px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #8c9bb0;
+  flex-shrink: 0;
+}
+.icon-button:hover {
+  background: #edf3ff;
+  color: #4278df;
+}
+.danger-hover:hover {
+  color: #dd5f68;
+  background: #fff0f1;
+}
+.text-button {
+  font-size: 12px;
+  color: var(--blue);
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 7px 0;
+}
+.spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

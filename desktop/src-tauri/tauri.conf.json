@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "SKY Data Workspace",
+  "version": "1.0.0",
+  "identifier": "io.sky.dataworkspace",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://127.0.0.1:5178",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [{
+      "label": "main",
+      "title": "SKY 数据采集工作台",
+      "width": 1360, "height": 880, "minWidth": 1060, "minHeight": 680,
+      "center": true, "resizable": true
+    }],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost; img-src 'self' asset: data:; style-src 'self' 'unsafe-inline'; script-src 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": ["icons/icon.ico"],
+    "externalBin": ["binaries/sky-data-runtime"],
+    "resources": ["resources/licenses/**/*"],
+    "category": "Productivity",
+    "shortDescription": "本地数据采集与证据审核工作台",
+    "windows": {
+      "webviewInstallMode": {
+        "type": "fixedRuntime",
+        "path": "Microsoft.WebView2.FixedVersionRuntime.156.0.4314.58.x64"
+      },
+      "nsis": {
+        "installerIcon": "icons/icon.ico",
+        "uninstallerIcon": "icons/icon.ico",
+        "installMode": "currentUser",
+        "languages": ["SimpChinese"],
+        "displayLanguageSelector": false,
+        "startMenuFolder": "SKY Data Workspace"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "source_id": "fixture-financial-table",
+  "source_url": "fixture://manually-labelled/financial-table",
+  "cells": [
+    {"cell_id": "income-2025", "label": "营业收入", "raw_value": "1,234.56", "unit": "万元", "period": "2025", "reporting_scope": "合并", "locator": "table:1/row:1/column:2025"},
+    {"cell_id": "income-2024", "label": "营业收入", "raw_value": "999.00", "unit": "万元", "period": "2024", "reporting_scope": "合并", "locator": "table:1/row:1/column:2024"},
+    {"cell_id": "profit-2025", "label": "净利润", "raw_value": "(123.45)", "unit": "万元", "period": "2025", "reporting_scope": "合并", "locator": "table:1/row:2/column:2025"}
+  ],
+  "fields": [
+    {"name": "revenue", "label": "营业收入", "kind": "decimal", "target_unit": "元", "period": "2025", "reporting_scope": "合并"},
+    {"name": "profit", "label": "净利润", "kind": "decimal", "target_unit": "元", "period": "2025", "reporting_scope": "合并"},
+    {"name": "assets", "label": "资产总计", "kind": "decimal", "target_unit": "元", "period": "2025", "reporting_scope": "合并"}
+  ]
+}
